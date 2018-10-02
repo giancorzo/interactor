@@ -1,5 +1,6 @@
 /* global Element */
 import Convergence from '@bigtest/convergence';
+
 import {
   $,
   $$,
@@ -8,7 +9,10 @@ import {
   getDescriptors,
   appendUp
 } from './utils';
+
 import { action, computed } from './interactions/helpers';
+import { when } from './interactions/when';
+import { always } from './interactions/always';
 import { find } from './interactions/find';
 import { findAll } from './interactions/find-all';
 import { scoped } from './interactions/scoped';
@@ -296,6 +300,8 @@ Object.defineProperties(Interactor, {
 Object.defineProperties(
   Interactor.prototype,
   Object.entries({
+    when,
+    always,
     find,
     findAll,
     scoped,

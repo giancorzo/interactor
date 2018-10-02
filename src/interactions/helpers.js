@@ -59,3 +59,29 @@ export function action(method) {
     value: method
   });
 }
+
+/**
+ * Given a string, will return a function that tests the truthiness of
+ * an instance property. If the string starts with `!`, the validation
+ * is inverted. Given a function, returns the function.
+ *
+ * @private
+ * @param {Object} instance - Instance to check the property of
+ * @param {String|Function} condition - Condition property to check
+ * @returns {Function} conditional function
+ * @throws {Error} when the property condition is false
+ */
+export function conditional(instance, condition) {
+  if (typeof condition === 'string') {
+    let invert = condition[0] === '!';
+    let key = condition.substr(invert ? 1 : 0);
+
+    return () => {
+      if (!(invert ? !instance[key] : !!instance[key])) {
+        throw new Error(`${key} returned ${invert ? 'true' : 'false'}`);
+      }
+    };
+  } else {
+    return condition;
+  }
+}

@@ -1,4 +1,6 @@
 // interaction creators
+export { default as when } from './when';
+export { default as always } from './always';
 export { default as clickable } from './clickable';
 export { default as fillable } from './fillable';
 export { default as selectable } from './selectable';
